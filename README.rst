@@ -1,0 +1,1 @@
+Makes inspecting and editing Gif data easy and intuitive. WIP.
