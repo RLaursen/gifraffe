@@ -1,1 +1,1 @@
-Makes inspecting and editing Gif data easy and intuitive. WIP.
+Makes inspecting and editing Gif data easy and intuitive.

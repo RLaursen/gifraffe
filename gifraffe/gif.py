@@ -3,7 +3,7 @@
 import struct
 from functools import wraps
 
-from lzw import encoder, decoder
+from gifraffe.gifraffe.lzw import encoder, decoder
 
 
 def extension(mth):
@@ -397,35 +397,6 @@ def pack(unpacked):
             )[2:].split('0x')
         )
     )
-
-
-def test():
-    """Test all getters and setters"""
-    from copy import deepcopy
-    with open('testy.gif', 'rb') as tester:
-        f = Gif(tester)
-        to_test = {'trailer' if x == 'TRAIL' else 'header' if x == 'HEAD' else x.lower() for x in dir(Gif) if
-                   x.isupper()}
-        old_data = deepcopy(f.data)
-        for i, _ in enumerate(f):
-            for x in to_test:
-                try:
-                    cur = getattr(f, x)
-                except KeyError as e:
-                    ...
-                    # assert str(e) == "'Plain Text Extension'"
-                if x not in {'pte', 'header', 'trailer'}:
-                    setattr(f, x, cur)
-            if broken := [old[0] for old, new in zip(old_data.items(), f.data.items()) if old != new]:
-                print(f'broken in frame {i}:', broken)
-    with open('testing.gif', 'rb') as tester:
-        tester = b''.join([*tester])
-    f = Gif(tester)
-    assert f.raw == tester
-    with open('test.gif', 'rb') as tester:
-        tester = b''.join([*tester])
-    f.raw = tester
-    assert f.raw == tester
 
 
 if __name__ == '__main__':
