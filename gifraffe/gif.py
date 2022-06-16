@@ -123,6 +123,7 @@ class Gif:
     # --- For dealing with frames rather than base attributes
 
     def __iter__(self):
+        self._frame = -1
         return self
 
     def __next__(self):
@@ -187,7 +188,6 @@ class Gif:
                 'Reserved For Future Use': pack[3:5],
                 'Size of Local Color Table': pack[5:]
             }
-
         }
 
     @id.setter
